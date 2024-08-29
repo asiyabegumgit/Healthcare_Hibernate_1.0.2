@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class AppointmentMain {
@@ -87,6 +88,17 @@ System.out.println("6. Exit");
                     appointmentID = scanner.nextInt();
                     appointmentService.deleteAppointment(appointmentID);  // Use service here
                     System.out.println("Appointment deleted successfully.");
+                    break;
+                case 5:
+                    // Application calls the service layer, not the repository directly
+                    List<Appointment> appointments=appointmentService.getAllAppointments();
+                    for(Appointment appointment1:appointments) {
+                        System.out.println("Appointment ID: " + appointment1.getAppointmentId());
+                        System.out.println("Doctor ID: " + appointment1.getDoctorId());
+                        System.out.println("PatientID: " + appointment1.getPatientId());
+                        System.out.println("Appointment Date: " + appointment1.getAppointmentDate());
+                        System.out.println("Notes: " + appointment1.getNotes());
+                    }
                     break;
                 default:
                     System.out.println("Invalid choice.");

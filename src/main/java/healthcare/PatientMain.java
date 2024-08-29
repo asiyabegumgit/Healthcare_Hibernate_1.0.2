@@ -5,8 +5,10 @@ import healthcare.service.PatientService;
 import healthcare.repository.PatientRepositoryImpl;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.internal.build.AllowSysOut;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class PatientMain {
@@ -86,6 +88,17 @@ while (choice != 6) {
                     patientId = scanner.nextInt();
                     patientService.deletePatient(patientId);  // Use service here
                     System.out.println("Patient deleted successfully.");
+                    break;
+                case 5:
+                    List<Patient> patients=patientService.getAllPatients();
+                    for(Patient patient1:patients) {
+                       System.out.println("Patient ID: " + patient1.getPatientID());
+                        System.out.println("Name: " + patient1.getFirstName() + " " + patient1.getLastName());
+                        System.out.println("Date of Birth: " + patient1.getDateOfBirth());
+                        System.out.println("Email: " + patient1.getEmail());
+                        System.out.println("Phone: " + patient1.getPhoneNumber());
+
+                    }
                     break;
                     default:
                     System.out.println("Invalid choice.");
