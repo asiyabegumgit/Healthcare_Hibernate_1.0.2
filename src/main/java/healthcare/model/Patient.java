@@ -1,10 +1,12 @@
 package healthcare.model;
+
 import jakarta.persistence.*;
+
 @Entity
-@Table(name="patients")
+@Table(name = "Patients")
 public class Patient {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int patientID;
     @Column

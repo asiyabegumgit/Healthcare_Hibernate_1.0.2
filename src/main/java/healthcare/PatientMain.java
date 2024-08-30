@@ -13,19 +13,21 @@ import java.util.Scanner;
 
 public class PatientMain {
 
-   // public static void main(String[] args) {
-public static void managePatients(PatientService patientService,Scanner scanner) throws SQLException {
 
+    public static void managePatients(SessionFactory sessionFactory , Scanner scanner) throws SQLException {
+
+        PatientRepositoryImpl patientRepository = new PatientRepositoryImpl(sessionFactory);
+        PatientService patientService = new PatientService(patientRepository);
 
         System.out.println("1. Create Patient");
         System.out.println("2. Read Patient");
         System.out.println("3. Update Patient");
         System.out.println("4. Delete Patient");
         System.out.println("5. Read All Patient");
-System.out.println("6. Exit");
+        System.out.println("6. Exit");
         int choice = scanner.nextInt();
         scanner.nextLine();
-while (choice != 6) {
+        while (choice != 6) {
 
             switch (choice) {
                 case 1:
@@ -90,9 +92,9 @@ while (choice != 6) {
                     System.out.println("Patient deleted successfully.");
                     break;
                 case 5:
-                    List<Patient> patients=patientService.getAllPatients();
-                    for(Patient patient1:patients) {
-                       System.out.println("Patient ID: " + patient1.getPatientID());
+                    List<Patient> patients = patientService.getAllPatients();
+                    for (Patient patient1 : patients) {
+                        System.out.println("Patient ID: " + patient1.getPatientID());
                         System.out.println("Name: " + patient1.getFirstName() + " " + patient1.getLastName());
                         System.out.println("Date of Birth: " + patient1.getDateOfBirth());
                         System.out.println("Email: " + patient1.getEmail());
@@ -100,13 +102,13 @@ while (choice != 6) {
 
                     }
                     break;
-                    default:
+                default:
                     System.out.println("Invalid choice.");
             }
-    System.out.println("Enter a choice : ");
-    choice = scanner.nextInt();
-    scanner.nextLine();
+            System.out.println("Enter a choice : ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
 
-}
+        }
     }
 }

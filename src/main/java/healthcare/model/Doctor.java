@@ -1,8 +1,9 @@
 package healthcare.model;
 
 import jakarta.persistence.*;
+
 @Entity
-@Table(name="Doctors")
+@Table(name = "Doctors")
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +20,7 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(int doctorID, String firstName, String lastName, String speciality,String email) {
+    public Doctor(int doctorID, String firstName, String lastName, String speciality, String email) {
         DoctorID = doctorID;
         this.firstName = firstName;
         this.lastName = lastName;

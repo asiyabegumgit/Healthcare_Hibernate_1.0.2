@@ -1,36 +1,28 @@
 package healthcare;
 
 import healthcare.model.Appointment;
-import healthcare.model.Doctor;
-import healthcare.model.Patient;
 import healthcare.repository.AppointmentRepositoryImpl;
-import healthcare.repository.DoctorRepositoryImpl;
-import healthcare.repository.PatientRepositoryImpl;
 import healthcare.service.AppointmentService;
-import healthcare.service.DoctorService;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
 public class AppointmentMain {
-    public static void manageAppointments(AppointmentService appointmentService,Scanner scanner) throws SQLException
-    {
-
+    public static void manageAppointments(SessionFactory sessionFactory , Scanner scanner) throws SQLException {
+        AppointmentRepositoryImpl appointmentRepository = new AppointmentRepositoryImpl(sessionFactory);
+        AppointmentService appointmentService = new AppointmentService(appointmentRepository);
 
         System.out.println("1. Create Appointment");
         System.out.println("2. Read Appointment");
         System.out.println("3. Update Appointment");
         System.out.println("4. Delete Appointment");
-System.out.println("5. Read All Appointments");
-System.out.println("6. Exit");
+        System.out.println("5. Read All Appointments");
+        System.out.println("6. Exit");
         int choice = scanner.nextInt();
-        while(choice != 6) {
+        while (choice != 6) {
             scanner.nextLine();
-
-
             switch (choice) {
                 case 1:
                     // Application calls the service layer, not the repository directly
@@ -91,8 +83,8 @@ System.out.println("6. Exit");
                     break;
                 case 5:
                     // Application calls the service layer, not the repository directly
-                    List<Appointment> appointments=appointmentService.getAllAppointments();
-                    for(Appointment appointment1:appointments) {
+                    List<Appointment> appointments = appointmentService.getAllAppointments();
+                    for (Appointment appointment1 : appointments) {
                         System.out.println("Appointment ID: " + appointment1.getAppointmentId());
                         System.out.println("Doctor ID: " + appointment1.getDoctorId());
                         System.out.println("PatientID: " + appointment1.getPatientId());

@@ -3,10 +3,10 @@ package healthcare.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Appointments")
+@Table(name = "Appointments")
 public class Appointment {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int appointmentId;
     @Column
     private int patientId;
@@ -19,6 +19,7 @@ public class Appointment {
 
     public Appointment() {
     }
+
     public Appointment(int appointmentId, int patientId, int doctorId, String appointmentDate, String notes) {
         this.appointmentId = appointmentId;
         this.patientId = patientId;

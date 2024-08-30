@@ -4,15 +4,15 @@ import healthcare.model.Doctor;
 import healthcare.repository.DoctorRepositoryImpl;
 import healthcare.service.DoctorService;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
 public class DoctorMain {
-    public static void mangeDoctors(DoctorService doctorService, Scanner scanner) throws SQLException {
-
+    public static void mangeDoctors(SessionFactory sessionFactory , Scanner scanner) throws SQLException {
+        DoctorRepositoryImpl doctorRepository = new DoctorRepositoryImpl(sessionFactory);
+        DoctorService doctorService = new DoctorService(doctorRepository);
 
         System.out.println("1. Create Doctor");
         System.out.println("2. Read Doctor");
@@ -84,8 +84,7 @@ public class DoctorMain {
                     break;
                 case 5:
                     List<Doctor> doctors = doctorService.getAllDoctors();  // Use service here
-                    for(Doctor doctor:doctors)
-                    {
+                    for (Doctor doctor : doctors) {
                         System.out.println("Doctor ID: " + doctor.getDoctorID());
                         System.out.println("Name: " + doctor.getFirstName() + " " + doctor.getLastName());
                         System.out.println("Speciality: " + doctor.getSpeciality());
