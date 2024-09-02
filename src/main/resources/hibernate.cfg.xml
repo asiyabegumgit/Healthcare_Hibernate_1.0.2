@@ -4,9 +4,9 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/HealthcareManagementDB?createDatabaseIfNotExist=true</property>
-        <property name="hibernate.connection.username"></property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/HealthcareManagementDB2?createDatabaseIfNotExist=true</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
 
 
         <!-- SQL dialect -->
@@ -21,8 +21,9 @@
 
         <!-- Names of annotated entity classes -->
 
-        <mapping class="healthcare.model.Patient"/>
-        <mapping class="healthcare.model.Doctor"/>
-        <mapping class="healthcare.model.Appointment"/>
+        <mapping class="healthcarev3.model.Patient"/>
+        <mapping class="healthcarev3.model.Doctor"/>
+        <mapping class="healthcarev3.model.Appointment"/>
+        <mapping class="healthcarev3.model.Office"/>
     </session-factory>
 </hibernate-configuration>
